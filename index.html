@@ -34,7 +34,17 @@ var SUFFIX = ""; /* "" untuk halaman publik, "?page=admin" untuk admin */
   var target = EXEC_URL + SUFFIX;
   var a = document.getElementById("fallback");
   a.href = target; a.style.display = "inline";
-  location.replace(target);
+  if (typeof TAMPIL !== "undefined" && TAMPIL === "redirect") { location.replace(target); return; }
+  /* mode iframe: alamat github.io tetap di address bar */
+  document.documentElement.style.height = "100%";
+  document.body.style.cssText = "margin:0;padding:0;display:block;height:100%;overflow:hidden;background:#fff";
+  var fr = document.createElement("iframe");
+  fr.src = target;
+  fr.title = document.title;
+  fr.setAttribute("allow", "clipboard-write; fullscreen");
+  fr.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0";
+  document.body.innerHTML = "";
+  document.body.appendChild(fr);
 })();
 </script>
 <noscript><p>Aktifkan JavaScript atau buka link ini langsung (salin link /exec dari pengelola aplikasi).</p></noscript>
