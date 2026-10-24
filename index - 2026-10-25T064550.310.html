@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daftar Kegiatan BPS Enrekang</title>
+<meta name="robots" content="noindex">
+<style>
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f0f3f8;color:#1c2530;text-align:center;padding:20px;}
+.box{max-width:360px;}
+.bar{height:5px;border-radius:3px;margin:0 auto 18px;width:120px;background:linear-gradient(90deg,#00aeef 0 34%,#f7941e 34% 67%,#8dc63f 67% 100%);}
+a{color:#0072bc;font-weight:600;}
+p{color:#5b6b7a;font-size:.9rem;}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="bar"></div>
+  <h2 style="margin:0 0 8px;font-size:1.05rem">Daftar Kegiatan BPS Kabupaten Enrekang</h2>
+  <p id="msg">Mengalihkan…</p>
+  <p><a id="fallback" href="#" style="display:none">Klik di sini jika tidak berpindah otomatis</a></p>
+</div>
+<script src="config.js"></script>
+<script>
+var SUFFIX = ""; /* "" untuk halaman publik, "?page=admin" untuk admin */
+
+(function(){
+  var ok = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(EXEC_URL);
+  var msg = document.getElementById("msg");
+  if(!ok){
+    msg.textContent = "Link belum diatur. Buka file ini dan ganti EXEC_URL dengan link /exec dari Apps Script.";
+    return;
+  }
+  var target = EXEC_URL + SUFFIX;
+  var a = document.getElementById("fallback");
+  a.href = target; a.style.display = "inline";
+  location.replace(target);
+})();
+</script>
+<noscript><p>Aktifkan JavaScript atau buka link ini langsung (salin link /exec dari pengelola aplikasi).</p></noscript>
+</body>
+</html>
